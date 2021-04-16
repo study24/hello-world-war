@@ -16,11 +16,8 @@ stages
   
   stage('Copy-arifact-to-tomcat')
   {
-  steps 
-    {
-      sshagent (['Tomcat-server']) {
-    sh 'scp -o StrictHostKeyChecking=no **/*.war ec2-user@172.31.34.50:/tomcat/webapps'
-  }
+  steps { sshagent (['Tomcat-server']) 
+        { sh 'scp -o StrictHostKeyChecking=no */target/*.war ec2-user@172.31.34.50:/var/lib/tomcat/webapps'}
 }
   }
 
